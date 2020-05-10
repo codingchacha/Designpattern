@@ -1,26 +1,32 @@
 class House:
-  def build_roof(self):
-    print("roof is set")
-  def install_door(self):
-    print("door is installed")
-  def fix_window_pair(self):
-    print("windows pair fixed")
+  def __init__(self , builder):
+    self.mk = builder.mk
+    self.roof = builder.roof
+    self.door = builder.door
+    self.window = builder.window
   class Builder:
-    def build_modular_kitcher(self):
-      print("kithen modular built")
+    def __init__(self , roof , window , door):
+      self.roof = roof
+      self.window = window
+      self.door = door
+    def build_modular_kitchen(self , mk):
+      self.mk = mk
       return self
-    def get_heating_system(self):
-      print("heating system installed in this house")
-      return self
-    def wooden_floor(self):
-      print("wooden floor installed in this house")
-      return self
-    def make_balcony(self):
-      print("This house has balcony")
-      return self
+	def installing_heating_system(self , hs):
+		self.hs = hs
+		return self
+	def building_balcony(self , bal):
+		self.bal = bal
+		return self
+	def wooden_flooring(self , wf):
+		self.wf = wf
+		return wf
     def build(self):
       house = House(self)
       return house
-  builder = Builder()
-house = House()
-house.builder.get_heating_system().build_modular_kitcher()
+    
+def main():
+  hw = House.Builder(True , True , True).building_modular_kitchen(True).installing_heating_system().building_balcony().build()
+  return hw.mk , hw.roof ,hw.window , hw.door
+
+print(main()))
